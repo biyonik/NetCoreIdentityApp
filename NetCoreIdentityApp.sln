@@ -1,8 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreIdentityApp.WebUI", "NetCoreIdentityApp.WebUI\NetCoreIdentityApp.WebUI.csproj", "{2C310F89-4844-4447-A1F8-0F25E546B1F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2C310F89-4844-4447-A1F8-0F25E546B1F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C310F89-4844-4447-A1F8-0F25E546B1F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C310F89-4844-4447-A1F8-0F25E546B1F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C310F89-4844-4447-A1F8-0F25E546B1F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
