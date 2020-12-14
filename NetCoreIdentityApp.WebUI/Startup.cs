@@ -4,8 +4,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NetCoreIdentityApp.WebUI.Context;
+using NetCoreIdentityApp.WebUI.CustomValidator;
 using NetCoreIdentityApp.WebUI.Middlewares;
 using NetCoreIdentityApp.WebUI.Models;
+using NetCoreIdentityApp.WebUI.Options;
 
 namespace NetCoreIdentityApp.WebUI
 {
@@ -27,7 +29,8 @@ namespace NetCoreIdentityApp.WebUI
             {
                 options.UseSqlServer(_configuration["ConnectionStrings:default"]);
             });
-            services.AddIdentity<AppUser, AppRole>()
+            services.AddIdentity<AppUser, AppRole>(IdentityCustomOptions.Options())
+                    .AddPasswordValidator<CustomPasswordValidator>()
                     .AddEntityFrameworkStores<AppIdentityDbContext>();
         }
 
