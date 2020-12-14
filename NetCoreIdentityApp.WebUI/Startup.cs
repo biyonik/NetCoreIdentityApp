@@ -2,6 +2,7 @@ using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,12 +24,13 @@ namespace NetCoreIdentityApp.WebUI
         }
         public void ConfigureServices(IServiceCollection services)
         {
-            services.ConfigureApplicationCookie(CookieCustomOptions.GetCookieAuthOptions());
-            
             services.AddMvc(options =>
             {
                 options.EnableEndpointRouting = false;
             });
+            
+            // CookieCustomOptions cookieCustomOptions = new CookieCustomOptions();
+            // services.ConfigureApplicationCookie(cookieCustomOptions.GetCookieAuthOptions());
             
             services.AddDbContext<AppIdentityDbContext>(options =>
             {
@@ -40,6 +42,12 @@ namespace NetCoreIdentityApp.WebUI
                     .AddUserValidator<CustomUserValidator>()
                     .AddErrorDescriber<CustomIdentityErrorDescriber>()
                     .AddEntityFrameworkStores<AppIdentityDbContext>();
+
+            // services.AddAuthentication("NetCoreIdentityApp.Application")
+            //         .AddCookie("NetCoreIdentityApp.Application",  cookieCustomOptions.GetCookieAuthOptions());
+            CookieCustomOptions cookieCustomOptions = new CookieCustomOptions();
+            services.ConfigureApplicationCookie(cookieCustomOptions.GetCookieAuthOptions());
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -48,8 +56,8 @@ namespace NetCoreIdentityApp.WebUI
             app.UseStatusCodePages();
             FileOptionsMiddleware.GetFileOptions(app, env, "node_modules");
             app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
             app.UseAuthentication();
+            app.UseMvcWithDefaultRoute();
         }
     }
 }

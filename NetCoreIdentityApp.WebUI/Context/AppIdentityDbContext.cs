@@ -4,7 +4,7 @@ using NetCoreIdentityApp.WebUI.Models;
 
 namespace NetCoreIdentityApp.WebUI.Context
 {
-    public class AppIdentityDbContext: IdentityDbContext<AppUser>
+    public class AppIdentityDbContext: IdentityDbContext<AppUser, AppRole, string>
     {
         public AppIdentityDbContext(DbContextOptions<AppIdentityDbContext> dbContextOptions): base(dbContextOptions)
         {
