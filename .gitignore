@@ -1,3 +1,6 @@
 bin/
 obj/
 /packages/
+NetCoreIdentityApp.WebUI/Migrations
+NetCoreIdentityApp.WebUI/wwwroot
+NetCoreIdentityApp.WebUI/node_modules

@@ -4,6 +4,5 @@ namespace NetCoreIdentityApp.WebUI.Models
 {
     public class AppRole: IdentityRole
     {
-        
     }
 }

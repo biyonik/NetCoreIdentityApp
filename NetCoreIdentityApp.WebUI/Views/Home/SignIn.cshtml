@@ -1,0 +1,28 @@
+@model NetCoreIdentityApp.WebUI.ViewModels.UserLoginViewModel
+
+@{
+    ViewBag.Title = "Giriş Yap - Anasayfa";
+    Layout = "_Layout";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h3 class="display-4 text-center">Giriş Yap</h3>
+        <hr>
+        <form asp-action="SignIn" asp-controller="Home" class="w-75 p-3 mx-auto" method="post">
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control">
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control">
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <button type="submit" name="UserLogin" class="btn btn-sm btn-outline-info">Giriş Yap</button>
+        </form>
+    </div>
+</div>

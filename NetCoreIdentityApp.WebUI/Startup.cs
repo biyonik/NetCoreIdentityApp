@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NetCoreIdentityApp.WebUI.Context;
+using NetCoreIdentityApp.WebUI.Middlewares;
 using NetCoreIdentityApp.WebUI.Models;
 
 namespace NetCoreIdentityApp.WebUI
@@ -34,6 +35,7 @@ namespace NetCoreIdentityApp.WebUI
         {
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
+            FileOptionsMiddleware.GetFileOptions(app, env, "node_modules");
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
             app.UseAuthentication();
