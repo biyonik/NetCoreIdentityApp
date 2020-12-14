@@ -1,5 +1,7 @@
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,15 +23,18 @@ namespace NetCoreIdentityApp.WebUI
         }
         public void ConfigureServices(IServiceCollection services)
         {
+            services.ConfigureApplicationCookie(CookieCustomOptions.GetCookieAuthOptions());
+            
             services.AddMvc(options =>
             {
                 options.EnableEndpointRouting = false;
             });
-
+            
             services.AddDbContext<AppIdentityDbContext>(options =>
             {
                 options.UseSqlServer(_configuration["ConnectionStrings:default"]);
             });
+            
             services.AddIdentity<AppUser, AppRole>(IdentityCustomOptions.Options())
                     .AddPasswordValidator<CustomPasswordValidator>()
                     .AddUserValidator<CustomUserValidator>()
