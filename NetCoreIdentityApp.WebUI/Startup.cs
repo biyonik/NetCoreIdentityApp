@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NetCoreIdentityApp.WebUI.Context;
 using NetCoreIdentityApp.WebUI.CustomValidator;
+using NetCoreIdentityApp.WebUI.Describers;
 using NetCoreIdentityApp.WebUI.Middlewares;
 using NetCoreIdentityApp.WebUI.Models;
 using NetCoreIdentityApp.WebUI.Options;
@@ -32,6 +33,7 @@ namespace NetCoreIdentityApp.WebUI
             services.AddIdentity<AppUser, AppRole>(IdentityCustomOptions.Options())
                     .AddPasswordValidator<CustomPasswordValidator>()
                     .AddUserValidator<CustomUserValidator>()
+                    .AddErrorDescriber<CustomIdentityErrorDescriber>()
                     .AddEntityFrameworkStores<AppIdentityDbContext>();
         }
 
