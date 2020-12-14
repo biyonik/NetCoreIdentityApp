@@ -10,7 +10,6 @@ namespace NetCoreIdentityApp.WebUI.Controllers
     public class HomeController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
-
         public HomeController(UserManager<AppUser> userManager)
         {
             _userManager = userManager;
@@ -41,7 +40,7 @@ namespace NetCoreIdentityApp.WebUI.Controllers
                 {
                     return RedirectToAction("SignIn", "Home");
                 }
-                else if (identityResult.Errors.Any())
+                else if (identityResult.Errors.Count() > 0)
                 {
                     foreach (IdentityError identityResultError in identityResult.Errors)
                     {

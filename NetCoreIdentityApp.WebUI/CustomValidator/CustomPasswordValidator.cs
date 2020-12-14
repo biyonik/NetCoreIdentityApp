@@ -13,12 +13,15 @@ namespace NetCoreIdentityApp.WebUI.CustomValidator
             List<IdentityError> identityErrorList = new List<IdentityError>();
             if (password.ToLower().Contains(user.UserName.ToLower()))
             {
-                IdentityError passwordContainUserName = new IdentityError()
+                if (!user.Email.Contains(user.UserName))
                 {
-                    Code = "ContainUserName",
-                    Description = "Parola, kullanıcı adı içeremez!"
-                };
-                identityErrorList.Add(passwordContainUserName);
+                    IdentityError passwordContainUserName = new IdentityError()
+                    {
+                        Code = "ContainUserName",
+                        Description = "Parola, kullanıcı adı içeremez!"
+                    };
+                    identityErrorList.Add(passwordContainUserName);
+                }
             }
 
             if (password.ToLower().Contains("1234"))
@@ -41,7 +44,7 @@ namespace NetCoreIdentityApp.WebUI.CustomValidator
                 identityErrorList.Add(passwordContainEmailAddress);
             }
 
-            return Task.FromResult(!identityErrorList.Any() 
+            return Task.FromResult(identityErrorList.Count == 0
                             ? IdentityResult.Success 
                             : IdentityResult.Failed(identityErrorList.ToArray()));
         }

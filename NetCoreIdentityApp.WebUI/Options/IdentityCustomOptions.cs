@@ -9,7 +9,8 @@ namespace NetCoreIdentityApp.WebUI.Options
         {
             return options =>
             {
-                options.Password = SetPasswordOptions(); 
+                options.Password = SetPasswordOptions();
+                options.User = SetUserOptions();
             };
         }
 
@@ -22,6 +23,15 @@ namespace NetCoreIdentityApp.WebUI.Options
                 RequireLowercase = false,
                 RequireUppercase = false,
                 RequireDigit = false
+            };
+        }
+
+        private static UserOptions SetUserOptions()
+        {
+            return new UserOptions()
+            {
+                RequireUniqueEmail = true,
+                AllowedUserNameCharacters = "abcçdefgğhıijklmnoöpqrsştuüvwxyzABCÇDEFGĞHIİJKLMNOÖPQRSŞTUÜVWXYZ0123456789-._"
             };
         }
     }

@@ -31,6 +31,7 @@ namespace NetCoreIdentityApp.WebUI
             });
             services.AddIdentity<AppUser, AppRole>(IdentityCustomOptions.Options())
                     .AddPasswordValidator<CustomPasswordValidator>()
+                    .AddUserValidator<CustomUserValidator>()
                     .AddEntityFrameworkStores<AppIdentityDbContext>();
         }
 
