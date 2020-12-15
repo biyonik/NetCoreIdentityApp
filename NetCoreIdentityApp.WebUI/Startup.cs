@@ -36,12 +36,13 @@ namespace NetCoreIdentityApp.WebUI
             {
                 options.UseSqlServer(_configuration["ConnectionStrings:default"]);
             });
-            
+
             services.AddIdentity<AppUser, AppRole>(IdentityCustomOptions.Options())
-                    .AddPasswordValidator<CustomPasswordValidator>()
-                    .AddUserValidator<CustomUserValidator>()
-                    .AddErrorDescriber<CustomIdentityErrorDescriber>()
-                    .AddEntityFrameworkStores<AppIdentityDbContext>();
+                .AddPasswordValidator<CustomPasswordValidator>()
+                .AddUserValidator<CustomUserValidator>()
+                .AddErrorDescriber<CustomIdentityErrorDescriber>()
+                .AddEntityFrameworkStores<AppIdentityDbContext>()
+                .AddDefaultTokenProviders();
 
             // services.AddAuthentication("NetCoreIdentityApp.Application")
             //         .AddCookie("NetCoreIdentityApp.Application",  cookieCustomOptions.GetCookieAuthOptions());

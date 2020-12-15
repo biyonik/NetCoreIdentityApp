@@ -44,7 +44,7 @@ namespace NetCoreIdentityApp.WebUI.CustomValidator
                 identityErrorList.Add(passwordContainEmailAddress);
             }
 
-            return Task.FromResult(identityErrorList.Count == 0
+            return Task.FromResult(identityErrorList.Count() == 0
                             ? IdentityResult.Success 
                             : IdentityResult.Failed(identityErrorList.ToArray()));
         }

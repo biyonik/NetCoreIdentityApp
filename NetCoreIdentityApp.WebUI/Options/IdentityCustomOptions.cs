@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace NetCoreIdentityApp.WebUI.Options
 {
-    public static class IdentityCustomOptions
+    public class IdentityCustomOptions
     {
         public static Action<IdentityOptions> Options()
         {
@@ -30,8 +30,7 @@ namespace NetCoreIdentityApp.WebUI.Options
         {
             return new UserOptions()
             {
-                RequireUniqueEmail = true,
-                AllowedUserNameCharacters = "abcçdefgğhıijklmnoöpqrsştuüvwxyzABCÇDEFGĞHIİJKLMNOÖPQRSŞTUÜVWXYZ0123456789-._"
+                RequireUniqueEmail = true
             };
         }
     }
